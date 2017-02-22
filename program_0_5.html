@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0045)http://nickm.com/memslam/a_house_of_dust.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!--
+A House of Dust reimplementation
+copyright (c) 2014 Nick Montfort <nickm@nickm.com>
+based on a 1967 program by Alison Knowles and James Tenney
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
+IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+Updated 10 March 2015 to remove a duplicate value in "place".
+Updated 17 November 2015 to remove a near-duplicate value in "inhabitants".
+Updated 18 November 2015 to add "IN A DESERT" & "ON OPEN GROUND" to "place".
+
+Adapted 22 February 2017 to act as a base for code for Tonality
+-->
+<style type="text/css">
+/* <![CDATA[ */
+body {
+ background:#000;
+ color:#ccc;
+ margin:0 0 0 18pt;
+ font-family:Optima, sans-serif;
+ font-size:16pt;
+}
+a {
+ color:#117;
+ text-decoration:none;
+}
+#main {
+ padding-top:18px;
+ width:70%;
+}
+#main div {
+ font-weight:bold;
+ padding-bottom:9px;
+}
+#info {
+ top:0;
+ right:0;
+ bottom:0;
+ position:absolute;
+ height:100%;
+ width:25%;
+ color:#333;
+ background:#999;
+ margin-left:6px;
+ border-left:thin #000 solid;
+ border-bottom:thin #000 solid;
+ padding:9px;
+ font-size:80%
+}
+/* ]]> */
+</style>
+<script type="text/javascript">
+
+var t = 0,
+punct_bank = [' ','. ', '! ', ', ', '... ', '? ', '!? ', '; ', '- ', ',,, ', '.. '],
+text_bank = ['The Sky Is Blue', 'The Grass Is Green', 'The Sun Is Yellow', 'The Stars Are Twinkling'];
+
+function rand_range(maximum) {
+    "use strict";
+    return Math.floor(Math.random() * (maximum + 1));
+}
+function choose(array) {
+    "use strict";
+    return array[rand_range(array.length - 1)];
+}
+function sentence(array) {
+    return choose(array).split(' ');
+}
+    
+function capsGenerator(string) {
+  var num = Math.random();
+  if(num <= 0.1){
+      return string.toUpperCase();
+  } 
+  else if(num >= 0.25){
+     return string.toLowerCase(); 
+  } 
+  else {return string;
+       }
+}
+function punctGenerator(boolean) {
+  var num = Math.random();
+  if (boolean){
+    if(num <= 0.35) return choose(punct_bank);
+    else return " ";
+  }
+  else{
+    if(num <= 0.95) return choose(punct_bank);
+    else return " ";
+  }
+}
+
+function stanza() {
+    "use strict";
+    var test = sentence(text_bank);
+    var count = 0;
+    var max = test.length;
+    var final = ''
+    
+    while (count <= max-1){
+        if(count != max-1){
+            var bool = true;
+        }
+        else{
+            var bool = false;
+        }
+        final += capsGenerator(test[count]) + punctGenerator(bool);
+        count += 1;
+    }
+    return final;
+}
+function litany() {
+    "use strict";
+    var last, text, main = document.getElementById('main');
+    if (15 > t) {
+        t += 1;
+    } else {
+        main.removeChild(document.getElementById('main').firstChild);
+    }
+    last = document.createElement('div');
+    last.innerHTML = stanza();
+    main.appendChild(last);
+}
+function produce_litany() {
+    "use strict";
+    litany();
+    setInterval(litany, 5000);
+}
+
+</script>
+  <title>Tonality</title>
+</head>
+
+<body onload="produce_litany();">
+<div id="info">
+    <h2>Tonality</h2>
+    <h3>Julia Kudryashev</h3>
+    21W.764 Program 0.5 (2017)<br>
+    <br>
+</div>
+<div id="main"></div>
+
+
+</body></html>
