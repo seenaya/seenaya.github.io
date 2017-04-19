@@ -1,21 +1,14 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Apr 12 02:31:23 2017
-
 @author: Julia
 """
 
 """
-
 HOW TO USE: 
-
 Save a text file as 'input.txt' in this file's directory
-
 It will output a recipe file for the text in file 'output.txt'
-
 There are still some unicode issues that need debugging
-
-
 """
 
 import nltk, re
