@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Program 3.5, Julia Kudryashev, 21W.764</title>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<style>  
+    body {
+        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    }
+    
+    h1 {
+        font-size: 20pt;
+        text-align: center;
+    }
+    
+    h2 {
+        font-size: 15pt;
+        text-align: center;
+    }
+    
+    h3 {
+        font-size: 13pt;
+        text-align: center;
+    }
+    
+    span {
+        
+        font-weight: bold;
+        color: darkcyan;
+        
+    }
+    
+    span:hover{
+        
+        color: darkblue;
+    }
+</style>
+    
+<script>
+
+function expandWord(word) {
+    if (document.getElementById(word).style.display=='block'){
+        document.getElementById(word).style.display='none';
+    } else {
+        document.getElementById(word).style.display='block';
+    }
+    }    
+    
+</script>
+</head>
+    
+<body>
+    
+<h1>Choose-Your-Own Poem</h1>
+    <h2>By Julia Kudryashev</h2>
+    <h3>Program 3.5, 21W.764<br>
+    Based on Emily Dickinson's Poem #359</h3>
+    
+    <p style="font-size:20pt"><span onclick="expandWord(this.innerHTML)">&#x1F426</span></p>
+    
+    <p id="&#x1F426" style="display:none">
+    A Bird, came down the Walk - <br>
+    He did not know I <span onclick="expandWord(this.innerHTML)">saw</span> -<br>
+    He bit an Angle Worm in halves<br> 
+    And <span onclick="expandWord(this.innerHTML)">ate</span> the fellow, raw,
+    </p> 
+
+    <p id="ate" style="display:none">
+        And then, he drank a <span onclick="expandWord(this.innerHTML)">Dew</span><br>
+    From a convenient Grass -<br>
+    And then hopped sidewise to the Wall<br> 
+    To let a Beetle pass -
+    </p>
+
+    <p id="saw" style="display:none">
+    He glanced with rapid eyes,<br>
+        That hurried all <span onclick="expandWord('Dew')">abroad</span> -<br>
+    They looked like frightened Beads, I thought,<br>
+    He stirred his Velvet Head. - 
+    </p>
+        
+    <p id="Oars" style="display:none">
+        Like one in danger, <span onclick="expandWord('saw')">Cautious</span>,<br>
+    I offered him a Crumb,<br>
+    And he unrolled his feathers,<br> 
+    And rowed him softer Home -
+    </p>
+        
+    <p id="Dew" style="display:none">
+    Than <span onclick="expandWord(this.innerHTML)">Oars</span> divide the Ocean,<br>
+    Too silver for a seam,<br>
+    Or Butterflies, off Banks of Noon,<br> 
+    Leap, plashless as they swim. 
+    </p>
+
+</body>
+</html>
